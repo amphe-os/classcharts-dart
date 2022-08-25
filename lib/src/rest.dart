@@ -15,14 +15,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 part of classdarts;
-
+Map<String, dynamic> _convertMap(Map<dynamic, dynamic> map) {
+  map.forEach((key, value) {
+    if (value is Map) {
+      // it's a map, process it
+      value = _convertMap(value);
+    }
+  });
+  // use .from to ensure the keys are Strings
+  return Map<String, dynamic>.from(map);
+  // more explicit alternative way:
+  // return Map.fromEntries(map.entries.map((entry) => MapEntry(entry.key.toString(), entry.value)));
+}
 class StudentClient{
   String sessionID;
-  String userID;
-  StudentClient(this.sessionID, this.userID);
+  StudentClient(this.sessionID);
 
 
-  Future basicInfo() async {
+  Future<Map> basicInfo() async {
   var dio = Dio();
   dio.options.headers["Authorization"] = "Basic $sessionID";
   Response loginRequest = await dio.get(
@@ -30,10 +40,10 @@ class StudentClient{
     options: Options(contentType: Headers.formUrlEncodedContentType),
   );
   assert(loginRequest.data is Map);
-  Map request = (loginRequest.data);
+  Map<dynamic, dynamic> request = loginRequest.data;
   return request;
 }
-
+var userID =null;
 
   Future getBehaviour(String? fromDate, String? toDate) async {
   var dio = Dio();

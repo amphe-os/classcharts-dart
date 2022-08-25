@@ -59,6 +59,16 @@ class UserAuthentication {
     Map apiResponse = loginRequest.data;
     Map metaResponse = apiResponse['meta'];
     String sessionID = metaResponse['session_id'];
+    
+      //dio.options.headers["Authorization"] = "Basic $sessionID";
+  // Response userIDrequest = await dio.get(
+  //   'https://www.classcharts.com/apiv2student/ping',
+  //   options: Options(contentType: Headers.formUrlEncodedContentType),
+  // );
+  // assert(loginRequest.data is Map);
+
+  // Map request = (loginRequest.data);
+  //   var details = {'sesh': sessionID, 'userid': userID};
     return sessionID;
   }
 }

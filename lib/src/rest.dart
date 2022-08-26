@@ -15,21 +15,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 part of classdarts;
-Map<String, dynamic> _convertMap(Map<dynamic, dynamic> map) {
-  map.forEach((key, value) {
-    if (value is Map) {
-      // it's a map, process it
-      value = _convertMap(value);
-    }
-  });
-  // use .from to ensure the keys are Strings
-  return Map<String, dynamic>.from(map);
-  // more explicit alternative way:
-  // return Map.fromEntries(map.entries.map((entry) => MapEntry(entry.key.toString(), entry.value)));
-}
+
 class StudentClient{
+  int userID;
   String sessionID;
-  StudentClient(this.sessionID);
+  StudentClient(this.sessionID, this.userID);
 
 
   Future<Map> basicInfo() async {
@@ -43,7 +33,6 @@ class StudentClient{
   Map<dynamic, dynamic> request = loginRequest.data;
   return request;
 }
-var userID =null;
 
   Future getBehaviour(String? fromDate, String? toDate) async {
   var dio = Dio();

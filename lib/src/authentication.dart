@@ -57,19 +57,30 @@ class UserAuthentication {
     assert(loginRequest.data is Map);
     // print(loginRequest.data);
     Map apiResponse = loginRequest.data;
+    try {
+      Map metaResponse = apiResponse['meta'];
+    } on TypeError {return {'ERROR': "TYPE PROVIDED IS INVALID, PRESUMED INCORRECT DETAILS"};} 
+      
+      
+    
     Map metaResponse = apiResponse['meta'];
+
     String sessionID = metaResponse['session_id'];
     
-      //dio.options.headers["Authorization"] = "Basic $sessionID";
-  // Response userIDrequest = await dio.get(
-  //   'https://www.classcharts.com/apiv2student/ping',
-  //   options: Options(contentType: Headers.formUrlEncodedContentType),
-  // );
-  // assert(loginRequest.data is Map);
+      dio.options.headers["Authorization"] = "Basic $sessionID";
+  Response userIDrequest = await dio.get(
+    'https://www.classcharts.com/apiv2student/ping',
+    options: Options(contentType: Headers.formUrlEncodedContentType),
+  );
+  assert(userIDrequest.data is Map);
+  var userID = await userIDrequest.data["data"]["meta"]["id"];
+  if (userID == null) {
+    Map details = {'ERROR': "userID is equal to null, login failed"};
+    return details;
+  }
 
-  // Map request = (loginRequest.data);
-  //   var details = {'sesh': sessionID, 'userid': userID};
-    return sessionID;
+   var details = {'sesh': sessionID, 'userid': userID};
+    return details;
   }
 }
 

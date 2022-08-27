@@ -42,6 +42,8 @@ TODO: Tell users more about the package: where to find more information, how to
 contribute to the package, how to file issues, what response they can expect 
 from the package authors, and more.
 
+To contribute to this repository we recomend installing the [eduAmphe essentials pack](https://github.com/amphe-os/eduamphe-essentials) before doing so
+
 Many thanks to the [unoffical classcharts api authors](https://github.com/classchartsapi/classcharts-api-js) for creating documentations to classcharts.
 
 Huge thanks to [classcharts.py authors](https://github.com/NCPlayz/classcharts.py) for using a diffrent implementation of logins that acc worked on dio.

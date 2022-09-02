@@ -73,9 +73,10 @@ class UserAuthentication {
     options: Options(contentType: Headers.formUrlEncodedContentType),
   );
   assert(userIDrequest.data is Map);
-  var userID = await userIDrequest.data["data"]["meta"]["id"];
+  print(userIDrequest.data);
+  var userID = await userIDrequest.data["data"]["user"]["id"];
   if (userID == null) {
-    Map details = {'ERROR': "userID is equal to null, login failed"};
+    Map details = {'ERROR': "userID is equal to null, login failed, Scream at Un"};
     return details;
   }
 

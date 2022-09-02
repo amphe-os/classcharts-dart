@@ -58,7 +58,7 @@ class StudentClient{
   return(request);
   }
 }
-
+  /// sortBy can be "due_date" "issue_date" defaults to 30 days
   Future getTasks(String sortBy, String? fromDate, String? toDate) async {
   var dio = Dio();
   dio.options.headers["Authorization"] = "Basic $sessionID";
@@ -84,9 +84,28 @@ class StudentClient{
   }
 }
   // for some FUCKING REASON, classcharts USES THE SAME COMMAND FOR MARKING DONE AND NOT DONE AND THAT MAKES MY JOB SO MUCH FUCKING HARDER I HATE YOU TES i cba honestly
-  Future? markTaskDone(String taskID){return null;}
+  /// will mark task as done or todo depending on the current tarks type
+  Future markTaskDone(int taskID) async {
+    var dio = Dio();
+    dio.options.headers["Authorization"] = "Basic $sessionID";
+  String url = 'https://www.classcharts.com/apiv2student/homeworkticked/$taskID?pupil_id=$userID';
+  Response loginRequest = await dio.get(
+    url,
+    options: Options(contentType: Headers.formUrlEncodedContentType),
+  );
+  assert(loginRequest.data is Map);
+  if (loginRequest.data['success'] == 0) {
+    Map request = (loginRequest.data);
+    return(request['error']);
+  }
+  Map request = (loginRequest.data);
+  return(request['success']);
+    
+    
+    }
   // done /apiv2student/homeworkticked/254798543?pupil_id=6201286
-
+  // var'ed /apiv2student/homeworkticked/$taskID?pupil_id=$userID
+  // response[data][lesson][ticked]
 
 }
 

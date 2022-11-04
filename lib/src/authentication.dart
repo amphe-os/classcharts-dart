@@ -59,15 +59,12 @@ class UserAuthentication {
     Map apiResponse = loginRequest.data;
     try {
       Map metaResponse = apiResponse['meta'];
-    } on TypeError {return {'ERROR': "TYPE PROVIDED IS INVALID, PRESUMED INCORRECT DETAILS"};} 
-      
-      
-    
+    } on TypeError {return {'ERROR': "TYPE PROVIDED IS INVALID, PRESUMED INCORRECT DETAILS"};}      
     Map metaResponse = apiResponse['meta'];
-
     String sessionID = metaResponse['session_id'];
-    
       dio.options.headers["Authorization"] = "Basic $sessionID";
+    
+    
   Response userIDrequest = await dio.get(
     'https://www.classcharts.com/apiv2student/ping',
     options: Options(contentType: Headers.formUrlEncodedContentType),

@@ -83,7 +83,7 @@ class StudentClient{
   return(request);
   }
 }
-  // for some FUCKING REASON, classcharts USES THE SAME COMMAND FOR MARKING DONE AND NOT DONE AND THAT MAKES MY JOB SO MUCH FUCKING HARDER I HATE YOU TES i cba honestly
+  // for some REASON, classcharts USES THE SAME COMMAND FOR MARKING DONE AND NOT DONE AND THAT MAKES MY JOB SO MUCH  HARDER I HATE YOU TES i cba honestly
   /// will mark task as done or todo depending on the current tarks type
   Future markTaskDone(int taskID) async {
     var dio = Dio();

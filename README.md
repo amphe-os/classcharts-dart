@@ -11,7 +11,7 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
-ClassDarts is a simple and easy package for interfacing with the classcharts school learning platform by tes
+ClassDarts is a simple and easy package for interfacing with the classcharts school learning platform by Tes
 
 ## Features
 
@@ -24,7 +24,7 @@ start using the package.
 
 ## Usage
 
-This Example uses classdarts to authenticate and get basic infomation about the user
+This example uses classdarts to authenticate and get basic infomation about the user
 
 ```dart
 void main() async {

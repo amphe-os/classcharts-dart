@@ -29,7 +29,7 @@ This example uses classdarts to authenticate and get basic infomation about the 
 ```dart
 void main() async {
   var user = UserAuthentication();
-  var session = await user.login(AN3KHGI7JG, "1/1/1984");
+  var session = await user.login(AN3KHGI7JG, "5/09/2005");
   print(session);
   var student = StudentClient(session);
   print(student.basicInfo());

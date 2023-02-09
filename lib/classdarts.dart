@@ -3,7 +3,6 @@
 /// More dartdocs go here.
 library classdarts;
 
-import 'dart:ffi';
 
 import 'package:dio/dio.dart';
 
